@@ -1,9 +1,11 @@
 How to switch lamps by keyboard
 
+```
 virtualenv ~/tmp/yeelight
 source ~/tmp/yeelight/bin/activate
 pip install yeelight
 deactivate
+```
 
 # Yeelight Light Control
 # Add it at ~/.config/i3/config
