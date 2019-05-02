@@ -1,0 +1,2 @@
+#!/bin/sh 
+~/.config/cmus/status_display_program.py "$*" & 

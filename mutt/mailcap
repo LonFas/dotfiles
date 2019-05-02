@@ -1,0 +1,7 @@
+# text/html; firefox %s ;
+# text/html; firefox -new-tab %s; test=test -n "$DISPLAY"
+# text/html; /usr/bin/chromium %s & sleep 1; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal
+text/html; firefox  %s & sleep 0.5; test=test -n "$DISPLAY"; nametemplate=%s.html;
+text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+application/pdf; mupdf %s;
+# application/ics; gcalcli import %s;

@@ -1,0 +1,70 @@
+#--------------------------------
+#-------Backend Settings:--------
+#--------------------------------
+# backend = "xrender";             # Use GLX backend for rendering
+backend = "glx";
+vsync = 1;                # Use OpenGL to implement vsync
+glx-swap-method = 3;             # Use a triple-buffer
+glx-no-stencil = true;           # Improves performance
+glx-no-rebind-pixmap = true;     # Improves performance with rapid window changes, might not work with some drivers
+
+
+#--------------------------------
+#--------Shadow Settings:--------
+#--------------------------------
+shadow = true;                   # Enable drawing shadows on windows
+shadow-radius = 8;               # The blur radius for shadows
+shadow-offset-x = -8;            # The horizontal offset for shadows
+shadow-offset-y = -8;            # The vertical offset for shadows
+no-dock-shadow = true;           # Do not draw shadows on docks/panels
+no-dnd-shadow = true;            # Do not draw shadows on DND windows
+shadow-exclude = [               # Do not draw shadows on these specific applications:
+   #"! name~=''",
+    "n:e:Notification",
+    "n:e:Plank",
+    "n:e:Docky",
+    "g:e:Synapse",
+    "g:e:Kupfer",
+    "g:e:Conky",
+    "n:w:*dockbarx*",
+   #"n:w:*Firefox*",
+   #"n:w:*Chrome*",
+   #"n:w:*Chromium*",
+    "class_g ?= 'Notify-osd'",
+    "class_g = 'Firefox' && argb",
+    "class_g = 'clipit' && argb",
+    "class_g = 'steam' && argb"
+];
+
+
+opacity-rule = [
+  "93:class_g = 'URxvt' && !_NET_WM_STATE@:32a",
+  "90:class_g = 'Qvim' && !_NET_WM_STATE@:32a",
+  "95:class_g = 'Zathura' && !_NET_WM_STATE@:32a",
+  "95:class_g = 'Spacefm' && !_NET_WM_STATE@:32a",
+  "88:class_g = 'LilyTerm' && !_NET_WM_STATE@:32a",
+  "80:class_g = 'i3-bar' && !_NET_WM_STATE@:32a",
+  "80:class_g = 'i3blocks' && !_NET_WM_STATE@:32a",
+  "50:class_g = 'i3-frame' && !_NET_WM_STATE@:32a",
+  "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+];
+
+#--------------------------------
+#--------Fading Settings:--------
+#--------------------------------
+fading = true;                   # Enable fading windows during opacity changes
+fade-delta = 4;                  # The time between steps in a fade in milliseconds
+fade-in-step = 0.03;             # The opacity change between steps while fading in
+fade-out-step = 0.03;            # The opacity change between steps while fading out
+detect-client-opacity = true;    # Prevent opacity from being ignored for some applications
+
+
+#--------------------------------
+#--------Window Settings:--------
+#--------------------------------
+wintypes:                        # Change behavior for these specific types of windows:
+{
+    tooltip = { fade = true; shadow = false; };
+};
+
+detect-rounded-corners = true;

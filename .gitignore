@@ -1,0 +1,12 @@
+mutt/cache/*
+mutt/*.cfg
+mutt/signature
+mutt/aliases
+mutt/certificates
+vim/.netrwhist
+*.bak
+*.swp
+*.pyo
+*.pyc
+*~
+.uuid

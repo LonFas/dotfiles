@@ -1,0 +1,5 @@
+cache/*
+*.cfg
+signature
+aliases
+certificates

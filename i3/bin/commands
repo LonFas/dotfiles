@@ -1,0 +1,39 @@
+#!/bin/bash
+commands=$(echo -e "video_dvi_on\nvideo_dvi_off\ndesktop_led\nkitchen_led\ndesktop_led_reset\nswitch_led\nyoutube_stream_on\nyoutube_stream_off" | rofi -dmenu -location 0 -width 20  -p 'custom_commands' )                                               
+
+case "$commands" in
+  video_dvi_on)
+	xrandr --output DVI-D-0 --auto
+	xrandr --output HDMI-A-1 --primary --auto --left-of DVI-D-0
+  ;;
+
+  video_dvi_off)
+	xrandr --output DVI-D-0 --off
+  ;;
+
+  desktop_led)
+	/home/lonfas/tmp/venv/bin/python /home/lonfas/git/all/programming/labs/python/scripts/yeelight/desktop.py
+  ;;
+
+  kitchen_led)
+	/home/lonfas/tmp/venv/bin/python /home/lonfas/git/all/programming/labs/python/scripts/yeelight/kitchen.py
+  ;;
+
+  desktop_led_reset)
+	/home/lonfas/tmp/venv/bin/python /home/lonfas/git/all/programming/labs/python/scripts/yeelight/desktop-w.py
+  ;;
+
+  switch_led)
+	/home/lonfas/tmp/venv/bin/python /home/lonfas/git/all/programming/labs/python/scripts/yeelight/kitchen.py
+        /home/lonfas/tmp/venv/bin/python /home/lonfas/git/all/programming/labs/python/scripts/yeelight/desktop.py
+  ;;
+
+  youtube_stream_on)
+	notify-send -u critical "Your screen at VIDEOSTREAM" -t 100000
+  ;;
+
+  youtube_stream_off)
+	notify-send -u low "Your VIDEOSTREAM is ended" -t 100000
+  ;;
+
+esac

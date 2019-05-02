@@ -1,0 +1,37 @@
+# Отключить приветствие
+startup_message off
+# Размер буфера прокрутки
+defscrollback 1000
+#
+# Производить отключение сессии при разрыве связи с терминалом
+autodetach on
+#
+# Открывать Login-шелл
+# shell -$SHELL
+#
+# Исправление проблемы с остатками текста
+altscreen on
+#
+# 256 битный терминал
+term screen-256color
+#
+# Волшебная строка
+# shelltitle '$ |sh'
+#
+# Строка состояния
+# hardstatus alwayslastline "%{+b wk} %c $LOGNAME@%H %=[ %w ] "
+hardstatus off
+hardstatus alwayslastline
+hardstatus string '%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
+# hardstatus string '%{= kG}[ %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
+# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
+encoding utf8
+# bind -c enc "^u" encoding utf8
+# bind -c enc "^k" encoding koi8-r
+# bind -c enc "^w" encoding cp1251
+# bindkey "^e" command -c enc
+# attrcolor b ".I"    # allow bold colors - necessary for some reason
+# termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+# defbce on    # use current bg color for erased chars
+# Bind F11 and F12 (NOT F1 and F2) to previous and next screen window
+# bindkey -k  prev

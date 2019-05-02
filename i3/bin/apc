@@ -1,0 +1,5 @@
+#!/bin/sh
+bat=`apcaccess | grep -E 'TIMELEFT|LOADPCT'`
+TIMEL=$(echo -e "$bat" | grep TIMELEFT | awk '{print $3}')
+LOAD=$(echo -e "$bat" | grep LOADPCT | awk '{print $3}')
+echo load $LOAD'%' "|" $TIMEL min

@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# a simple dmenu session script 
+#
+###
+
+# DMENU='rofi -dmenu -i -b -fn -xos4-terminus-medium-r-*--12-*-*-*-*-*-iso10646-1 -nb #000000 -nf #999999 -sb #000000 -sf #31658C'
+DMENU='rofi -dmenu -location 0 -width 20'
+choice=$(echo -e "Graveyard_Keeper\nUnepic\nAsh_of_Gods\nAtomRPG\nDDLC" | $DMENU)
+
+case "$choice" in
+  Graveyard_Keeper) /home/lonfas/GOG\ Games/Graveyard\ Keeper/start.sh & ;;
+  Unepic) /home/lonfas/GOG\ Games/Unepic/start.sh &;;
+  Ash_of_Gods) /home/lonfas/GOG\ Games/Ash\ of\ Gods/start.sh &;;
+  AtomRPG) /home/lonfas/GOG\ Games/AtomRPG/run-game.sh &;;
+  DDLC) /home/lonfas/GOG\ Games/DDLC\!/Game\ v1.1.0/DDLC.sh &;;
+esac

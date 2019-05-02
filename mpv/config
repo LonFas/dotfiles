@@ -1,0 +1,12 @@
+# Write your default config options here!
+# vo=vdpau
+slang=rus
+alang=jpn
+# Use hardware decoding (this might break playback of some h264 files)
+#hwdec=vdpau
+# Most video filters do not work with hardware decoding.
+#vf-clr=yes
+ass-style-override=force
+# seekbarstyle=knob
+osd-scale-by-window=yes
+sub-scale-by-window=yes

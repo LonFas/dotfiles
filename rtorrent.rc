@@ -1,0 +1,85 @@
+# https://gist.github.com/bryanjswift/1525912
+# https://github.com/rakshasa/rtorrent/wiki/rTorrent-0.9-Comprehensive-Command-list-(WIP)
+
+bind = 0.0.0.0
+
+# минимальное число пиров на торрент
+throttle.min_peers.normal.set = 1
+
+# дипазон портов
+network.port_range.set = 40890-40890
+
+#случайный выбор порта для обмена данными. В данном случае он отключён
+network.port_random.set = no
+
+#максимальное число пиров на торрент
+throttle.max_peers.normal.set = 1000
+
+# обмен пирами
+protocol.pex.set= yes
+
+# скорость раздачи
+# throttle.global_up.max_rate.set_kb = 300
+
+# скорость закачки
+throttle.global_down.max_rate.set_kb = 5000
+
+# сохранять сессию
+session.save = yes
+
+# резульаты сессии
+session.path.set = ~/.rtorrent_session
+
+# использовать UDP-трекеры
+trackers.use_udp.set = yes
+
+# Проверять hash файла по окончании закачки
+pieces.hash.on_completion.set = yes
+
+# принудительная кодировка
+encoding.add = UTF-8
+
+# каталог для сохранения закачек
+directory.default.set = ~/Downloads
+
+# шифрование
+# принимать зашифрованные входящие соединения, устанавливать незашифрованные исходящие соединения,
+# если возвращает ошибку, повторять с шифрованием, предпочитать открытый текст после установления
+
+# зашифрованного соединения
+protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
+
+# Сеть DHT
+dht.mode.set = auto
+dht.port.set = 6881
+
+# Управление rtorrent
+# scgi_local = 127.0.0.1:5000
+# scgi_port = 127.0.0.1:5000
+
+# Поиск торрент-файлов в директории
+schedule2 = watch_directory_1,5,5,"load.start=~/Dropbox/private/torrents/*.torrent"
+
+# 768 mb оперативы отдать под rtorrent "768 * 1024 * 1024 = 805306368"
+pieces.memory.max.set = 805306368
+
+# Устанавливает количество раздач с торрента
+throttle.max_uploads.set = 2
+
+# Включить Ratio 
+# ratio.enable=
+# Change the limits, the defaults should be sufficient.
+# Upload to a minimum ratio of 1.0
+# ratio.min.set=100
+# Upload to a maximum ratio of 2.0
+# ratio.max.set=200
+# Upload a minimum of 250 MB
+ratio.upload.set=250M
+
+# When seeding ratio is reached close the torrent
+# Закрыть торрент по получении ratio
+# system.method.set = group.seeding.ratio.command, d.close=
+
+# Включить журналированние соединений. Это создает большое количество сообщений, 
+# но позволяет обнаружить ошибки соединений. 
+# log.execute = /home/lonfas/rtorrent.log

@@ -1,0 +1,132 @@
+# http://www.mutt.org/doc/manual/#index-format
+# 
+# Контакты почты
+set alias_file=~/.mutt/aliases
+set sort_alias= alias
+set reverse_alias=yes
+source $alias_file
+
+# Форматирование строки письма в общем окне
+set index_format="%3C| %D |%Z| %-27.27L | %s"
+
+# Конкретно настройка отображение времени письма
+set date_format="!%b/%d [%H-%M]"
+
+# Разделитель списка писем и открытого письма 
+set status_chars  = " *%A"
+# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?─── $from ───"
+
+# Количество заголовков писем в списке, при просмотре отдельного письма
+set pager_index_lines=15
+
+# Прокручивать открытое письмо построчно (Enter)
+set menu_scroll
+
+# Тема
+source ~/.mutt/themes/dracula
+
+# Список писем ветками, в обратом порядке по дате получения (самые последние внизу)
+set sort=threads
+
+# По умолчанию сворачивать ветки
+set strict_threads=yes
+set sort_browser=reverse-date
+set sort_aux=last-date-received
+# set collapse_unread=yes
+
+# Сворачивать-разворачивать ветки
+bind index - collapse-thread
+bind index _ collapse-all
+
+# В ответ засовывать оригинал письма "как ответ на комментарий"
+set include
+
+# Редактор писем
+set visual=vim
+set editor=`echo \$EDITOR`
+
+set imap_keepalive = 300
+set imap_check_subscribed
+# unset imap_passive
+set mail_check = 60
+
+set ssl_starttls=yes
+set ssl_force_tls=yes
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+set move = no
+
+set mailcap_path = ~/.mutt/mailcap
+
+# Default account
+source ~/.mutt/lonfas.cfg
+set signature = ~/.mutt/signature
+
+# Макросы на переключение между почтовыми аккаунтами
+macro index "<esc>1" '<sync-mailbox><enter-command>source ~/.mutt/lonfas.cfg<enter><change-folder>!<enter>'
+macro index "<esc>2" '<sync-mailbox><enter-command>source ~/.mutt/gmail.cfg<enter><change-folder>!<enter>'
+macro index "<esc>3" '<sync-mailbox><enter-command>source ~/.mutt/yandex.cfg<enter><change-folder>!<enter>'
+macro index "<esc>4" '<sync-mailbox><enter-command>source ~/.mutt/mail.cfg<enter><change-folder>!<enter>'
+macro index "<esc>5" '<sync-mailbox><enter-command>source ~/.mutt/trash.cfg<enter><change-folder>!<enter>'
+macro index "<esc>6" '<sync-mailbox><enter-command>source ~/.mutt/trash_old.cfg<enter><change-folder>!<enter>'
+macro index "<esc>7" '<sync-mailbox><enter-command>source ~/.mutt/icloud.cfg<enter><change-folder>!<enter>'
+macro index "<esc>8" '<sync-mailbox><enter-command>source ~/.mutt/sadmin.cfg<enter><change-folder>!<enter>'
+macro index "<esc>0" '<sync-mailbox><enter-command>source ~/.mutt/work.cfg<enter><change-folder>!<enter>'
+
+
+# Gmail-style keyboard shortcuts
+# macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+# macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+# macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+# macro index gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
+# macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
+# macro index,pager d "<save-message>=[Gmail]/Trash<enter><enter>" "Trash"
+
+# macro index \' "<tag-pattern>~R !~D !~F<enter><tag-prefix><save-message> <enter>""Archive"
+# macro index,pager az "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
+#
+#
+macro index,pager A "<save-message>=[Gmail]/All<enter><enter>" "Archive"
+macro index M "T.*\n;WN" "Mark all messages as read"
+bind index G imap-fetch-mail
+
+bind attach <return> view-mailcap
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# disable artifitial pauses
+set sleep_time = 0
+
+# удалить без подтверждения
+# set delete=yes
+
+# включаем поддержку GPG
+set crypt_use_gpgme=yes
+# по дeфолту подписывать все сообщения
+set crypt_autosign=yes
+# шифровать ответы на зашифрованные сообщения
+set crypt_replyencrypt=yes
+
+# Скыть по дефолту, и выставить его ширину в 22 знака. Указать конкретное форматирование
+# set sidebar_visible = no 
+# set sidebar_width = 22
+# set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+# Показывать по кнопке "B"
+bind index,pager B sidebar-toggle-visible
+
+# NeoMutt Perfomance
+# use very high $read_inc to speed up reading hcache'd maildirs
+folder-hook . 'set read_inc=1000'
+
+# Уведомления о пришедших письмах
+set new_mail_command="notify-send 'New Email' '%n new messages, %u unread.' &"
+
+mailboxes = \
+  =INBOX \
+  =Drafts \
+  =Sent \
+  =Queue \
+  =Trash \
+  =[Gmail]
