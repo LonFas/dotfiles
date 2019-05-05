@@ -4,12 +4,6 @@ filetype off                  " required
 set tabpagemax=100
 nnoremap gr gT
 
-syntax enable
-" colorscheme gruvbox
-colorscheme dracula
-set background=dark
-" set number
-
 au BufNewFile,BufRead *rtorrent.rc* set filetype=rtorrent 
 
 " tabpagemax
@@ -61,6 +55,35 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+syntax enable
+" colorscheme gruvbox
+colorscheme dracula
+set background=dark
+" set number
+call plug#begin('~/.vim/bundle')
+
+" It shows the history of commits under the cursor in popup window.
+Plug 'rhysd/git-messenger.vim'
+call plug#end()            " required
+
+" Header such as 'Commit:', 'Author:'
+hi gitmessengerHeader term=None guifg=#88b8f6 ctermfg=111
+
+" Commit hash at 'Commit:' header
+hi gitmessengerHash term=None guifg=#f0eaaa ctermfg=229
+
+" History number at 'History:' header
+hi gitmessengerHistory term=None guifg=#fd8489 ctermfg=210
+
+" Normal color. This color is the most important
+hi gitmessengerPopupNormal term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
+
+" Color of 'end of buffer'. To hide '~' in popup window, I recommend to use the same background color as gitmessengerPopupNormal.
+hi gitmessengerEndOfBuffer term=None guifg=#333333 guibg=#333333 ctermfg=234 ctermbg=234
+
+
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
